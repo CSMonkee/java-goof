@@ -41,8 +41,9 @@ jobs:
         - name: Install Maven dependencies
           run: mvn clean install
 
-        - uses: snyk/actions/setup@master
-        - name: Test Open Source Dependencies with Snyk
+        # Remove the Snyk scan
+        # - uses: snyk/actions/setup@master
+        # - name: Test Open Source Dependencies with Snyk
           # run: snyk test --all-projects
           # env:
           #   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
