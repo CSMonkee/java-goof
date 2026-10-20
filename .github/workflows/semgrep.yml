@@ -17,8 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    container:
-      image: semgrep/semgrep
     steps:
     - uses: actions/checkout@v6
     - name: Set up JDK
