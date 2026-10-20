@@ -29,6 +29,8 @@ jobs:
       run: mvn clean install -DskipTests
     - name: Build Dependency Tree
       run: mvn dependency:tree -DoutputFile=maven_dep_tree.txt
+    - name: Install Semgrep
+      run: python3 -m pip install semgrep
     - name: Run Semgrep
       run: semgrep ci
       env:
