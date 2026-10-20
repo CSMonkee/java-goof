@@ -25,6 +25,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: 'maven'
+    - name: Build and Package Modules
+      run: mvn clean install -DskipTests
     - name: Build Dependency Tree
       run: mvn dependency:tree -DoutputFile=maven_dep_tree.txt
     - name: Run Semgrep
