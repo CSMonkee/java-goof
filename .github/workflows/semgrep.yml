@@ -17,21 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+    container:
+      image: semgrep/semgrep
     steps:
     - uses: actions/checkout@v6
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'maven'
-    - name: Build and Package Modules
-      run: mvn clean install -DskipTests
-    - name: Build Dependency Tree
-      run: mvn dependency:tree -DoutputFile=maven_dep_tree.txt
-    - name: Install Semgrep
-      run: python3 -m pip install semgrep
-    - name: Run Semgrep
-      run: semgrep ci
-      env:
-        SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+    - run: semgrep ci
